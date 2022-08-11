@@ -1,21 +1,11 @@
-trigger:
-- master
-
+trigger: none
 pool:
-  vmImage: 'windows-latest'
-
-variables:
-  buildConfiguration: 'Release'
-
+  vmImage: 'ubuntu-20.04'
 steps:
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    feedsToUse: 'select'
-    vstsFeed: 'my-vsts-feed' # A series of numbers and letters
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    arguments: '--configuration $(buildConfiguration)'
-  displayName: 'dotnet build $(buildConfiguration)'
+  - task: UseDotNet@2
+    displayName: istalacja .NET 5
+    inputs:
+      packageType: 'sdk'
+      version: '5.0.x'
+  - task: PublishBuildArtifacts@1
+    displayName: Publish app
