@@ -13,7 +13,7 @@ RUN dotnet restore
 
 # Copy everything else and build
 COPY . ./
-RUN dotnet publish /Booking.Server/Booking.Server.API/Booking.Server.API.csproj -c release -o /app --no-restore
+RUN dotnet publish ./Booking.Server/Booking.Server.API/Booking.Server.API.csproj -c release -o /app --no-restore
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
