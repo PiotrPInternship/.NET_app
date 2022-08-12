@@ -16,7 +16,7 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '6.x'
+        dotnet-version: '6.0.x'
     - name: Dotnet restore
       run: dotnet restore
       working-directory: ./Booking.Server
