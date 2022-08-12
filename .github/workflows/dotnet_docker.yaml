@@ -1,0 +1,25 @@
+name: Docker Image dotnetapp
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag piter26133/dotnet_github:dotnetapp
+    - name: Login to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUBLOGIN }}
+        password: ${{ secrets.DOCKERHUBPASSWD }}
+    - name: Push the Docker image
+      run: docker push piter26133/dotnet_github:dotnetapp
