@@ -1,4 +1,4 @@
-FROM dotnet:6
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /usr/src/app
 
 # Copy everything
