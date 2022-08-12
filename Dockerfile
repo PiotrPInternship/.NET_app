@@ -2,7 +2,9 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
 WORKDIR /usr/src/app
 
 # Copy csproj and restore as distinct layers
-COPY ./**/*.csproj ./
+COPY ./Booking.Server/Booking.Server.API/Booking.Server.API.csproj ./
+COPY ./Booking.Server/Booking.Server.DB/Booking.Server.DB.csproj ./
+COPY ./Booking.Server/Booking.Server.Test/Booking.Server.Test.csproj ./
 RUN dotnet restore
 
 # Copy everything else and build
