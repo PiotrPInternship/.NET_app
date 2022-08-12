@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
-WORKDIR /usr/src/app
+WORKDIR /usr/src/dotnetapp
 
 # Copy csproj and restore as distinct layers
 COPY ./Booking.Server/Booking.Server.API/Booking.Server.API.csproj ./
@@ -19,4 +19,4 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "aspnetcoreapp.dll"]
+ENTRYPOINT ["dotnet", "dotnetapp.dll"]
