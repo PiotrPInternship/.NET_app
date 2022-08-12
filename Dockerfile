@@ -7,9 +7,7 @@ COPY *.csproj ./
 RUN dotnet restore
     
 # Copy everything else and build
-COPY
-Learn more about the "COPY" Dockerfile command.
- ../engine/examples ./
+COPY . ./
 RUN dotnet publish -c Release -o out
     
 # Build runtime image
