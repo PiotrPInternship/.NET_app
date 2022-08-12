@@ -7,13 +7,11 @@ COPY *.csproj ./
 RUN dotnet restore
     
 # Copy everything else and build
-COPY
-Learn more about the "COPY" Dockerfile command.
- ../engine/examples ./
+COPY ../engine/examples ./
 RUN dotnet publish -c Release -o out
     
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", ".NET_app.dll"]
+ENTRYPOINT ["dotnet", "dotnetapp.dll"]
