@@ -2,10 +2,10 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
 WORKDIR /usr/src/dotnetapp
 
 # Copy csproj and restore as distinct layers
-COPY Booking.Server/Booking.Server.API/Booking.Server.API.csproj ./
-COPY Booking.Server/Booking.Server.DB/Booking.Server.DB.csproj ./
-COPY Booking.Server/Booking.Server.Test/Booking.Server.Test.csproj ./
-COPY Booking.Server/Booking.Server.sln ./
+COPY Booking.Server/Booking.Server.API/Booking.Server.API.csproj ./Booking.Server/Booking.Server.API/Booking.Server.API.csproj
+COPY Booking.Server/Booking.Server.DB/Booking.Server.DB.csproj ./Booking.Server/Booking.Server.DB/Booking.Server.DB.csproj
+COPY Booking.Server/Booking.Server.Test/Booking.Server.Test.csproj ./Booking.Server/Booking.Server.Test/Booking.Server.Test.csproj
+COPY Booking.Server/Booking.Server.sln ./Booking.Server/Booking.Server.sln
 
 WORKDIR /usr/src/dotnetapp/Booking.Server
 
