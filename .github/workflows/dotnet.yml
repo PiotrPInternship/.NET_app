@@ -22,6 +22,7 @@ jobs:
       working-directory: ./Booking.Server
     - name: Dotnet build
       run: dotnet build
-      working-directory: ./Booking.Server/Booking.Server.API/   
-    - name: Test with the dotnet CLI
-      run: dotnet test0.1
+      working-directory: ./Booking.Server/Booking.Server.API/  
+    - name: Dotnet publish
+      run: dotnet publish
+      working-directory: ./Booking.Server/Booking.Server.API/
