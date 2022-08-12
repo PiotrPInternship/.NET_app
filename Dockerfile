@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
 WORKDIR /usr/src/app
 
 # Copy csproj and restore as distinct layers
-COPY **/*.csproj ./
+COPY ./**/*.csproj ./
 RUN dotnet restore
 
 # Copy everything else and build
