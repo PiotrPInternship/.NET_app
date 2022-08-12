@@ -7,7 +7,7 @@ COPY ./Booking.Server/Booking.Server.DB/Booking.Server.DB.csproj ./
 COPY ./Booking.Server/Booking.Server.Test/Booking.Server.Test.csproj ./
 COPY ./Booking.Server/Booking.Server.sln ./
 
-WORKDIR /usr/src/app/Booking.Server
+WORKDIR /usr/src/dotnetapp/Booking.Server
 
 RUN dotnet restore
 
