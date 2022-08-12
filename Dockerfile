@@ -1,15 +1,23 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
-WORKDIR /app
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
+WORKDIR /dotnetapp
 
-# Copy everything
-COPY . ./
-# Restore as distinct layers
+# Copy csproj and restore as distinct layers
+COPY Booking.Server/Booking.Server.API/Booking.Server.API.csproj ./Booking.Server/Booking.Server.API/Booking.Server.API.csproj
+COPY Booking.Server/Booking.Server.DB/Booking.Server.DB.csproj ./Booking.Server/Booking.Server.DB/Booking.Server.DB.csproj
+COPY Booking.Server/Booking.Server.Test/Booking.Server.Test.csproj ./Booking.Server/Booking.Server.Test/Booking.Server.Test.csproj
+COPY Booking.Server/Booking.Server.sln ./Booking.Server/Booking.Server.sln
+
+WORKDIR /dotnetapp/Booking.Server
+
 RUN dotnet restore
-# Build and publish a release
-RUN dotnet publish -c Release -o out
+
+# Copy everything else and build
+COPY . ./
+#i have no idea what is wrong in line under
+RUN dotnet publish -o ./Booking.Server/Booking.Server.API/
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
-WORKDIR /app
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
+WORKDIR /dotnetapp
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "Booking.Server.API.dll"]
