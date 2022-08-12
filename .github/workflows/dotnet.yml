@@ -17,8 +17,14 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '3.1.x'
+    - name: Clean temp directory1
+      run: rm -rf *
+      working-directory: ./Booking.Server
     - name: Install dependencies
       run: dotnet restore
+    - name: Clean temp directory2
+      run: rm -rf *
+      working-directory: ./Booking.Server/Booking.Server.API/
     - name: Build
       run: dotnet build
     - name: Test with the dotnet CLI
