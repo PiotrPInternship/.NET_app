@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
-WORKDIR /usr/src/dotnetapp
+WORKDIR /dotnetapp
 
 # Copy csproj and restore as distinct layers
 COPY Booking.Server/Booking.Server.API/Booking.Server.API.csproj ./Booking.Server/Booking.Server.API/Booking.Server.API.csproj
@@ -7,16 +7,16 @@ COPY Booking.Server/Booking.Server.DB/Booking.Server.DB.csproj ./Booking.Server/
 COPY Booking.Server/Booking.Server.Test/Booking.Server.Test.csproj ./Booking.Server/Booking.Server.Test/Booking.Server.Test.csproj
 COPY Booking.Server/Booking.Server.sln ./Booking.Server/Booking.Server.sln
 
-WORKDIR /usr/src/dotnetapp/Booking.Server
+WORKDIR /dotnetapp/Booking.Server
 
 RUN dotnet restore
 
 # Copy everything else and build
 COPY . ./
-RUN dotnet publish -c Release -o out
+RUN dotnet publish /Booking.Server/Booking.Server.API/Booking.Server.API.csproj -c release -o /app --no-restore
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
-WORKDIR /app
+WORKDIR /dotnetapp
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "dotnetapp.dll"]
+ENTRYPOINT ["dotnet", "Booking.Server.API.dll"]
