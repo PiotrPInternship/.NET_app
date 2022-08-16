@@ -14,7 +14,7 @@ RUN dotnet restore
 # Copy everything else and build
 COPY . ./
 #i have no idea what is wrong in line under
-RUN dotnet publish -o ./Booking.Server/Booking.Server.API/
+RUN dotnet publish 
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
