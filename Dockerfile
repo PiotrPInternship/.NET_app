@@ -13,8 +13,10 @@ RUN dotnet restore
 
 # Copy everything else and build
 COPY . ./
+
+WORKDIR ./Booking.Server/Booking.Server.API/
 #i have no idea what is wrong in line under
-RUN dotnet publish -o ./Booking.Server/Booking.Server.API/
+RUN dotnet publish -o ./binary
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal
