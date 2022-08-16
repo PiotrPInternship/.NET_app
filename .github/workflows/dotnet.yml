@@ -1,4 +1,4 @@
-name: .NETapp
+name: DotNETapp
 
 on:
   push:
