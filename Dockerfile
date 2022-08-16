@@ -17,7 +17,7 @@ COPY . ./
 RUN dotnet publish 
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal
 WORKDIR /dotnetapp
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "Booking.Server.API.dll"]
