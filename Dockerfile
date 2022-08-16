@@ -15,11 +15,10 @@ RUN dotnet restore
 COPY . ./
 
 WORKDIR ./Booking.Server/Booking.Server.API/
-#i have no idea what is wrong in line under
 RUN dotnet publish -o /binary
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /dotnetapp
-COPY --from=build-env ./Booking.Server/Booking.Server.API/binary .
+COPY --from=build ./Booking.Server/Booking.Server.API/binary .
 ENTRYPOINT ["dotnet", "Booking.Server.API.dll"]
