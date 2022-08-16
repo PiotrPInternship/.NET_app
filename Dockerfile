@@ -20,6 +20,6 @@ RUN dotnet publish -o /binary
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
-WORKDIR /dotnetapp
+WORKDIR ./Booking.Server/Booking.Server.API/
 COPY --from=build-env /binary .
 ENTRYPOINT ["dotnet", "Booking.Server.API.dll"]
