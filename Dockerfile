@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:6.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
 WORKDIR /dotnetapp
 
 # Copy csproj and restore as distinct layers
