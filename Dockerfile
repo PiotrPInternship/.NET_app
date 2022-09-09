@@ -10,6 +10,7 @@ COPY Booking.Server/Booking.Server.sln ./Booking.Server/Booking.Server.sln
 WORKDIR /dotnetapp/Booking.Server
 
 RUN dotnet restore
+RUN dotnet build
 
 # Copy everything else and build
 COPY . ./
